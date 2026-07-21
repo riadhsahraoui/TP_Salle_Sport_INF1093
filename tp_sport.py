@@ -172,7 +172,71 @@ def rechercher_par_numero(index_membres, numero):
 def menu():
     membres = []
     index = {}
+while True:
+        print("\n--- MENU ---")
+        print("1. Ajouter membre standard")
+        print("2. Ajouter membre premium")
+        print("3. Afficher tous les membres")
+        print("4. Afficher membres actifs")
+        print("5. Afficher membres premium")
+        print("6. Sauvegarder")
+        print("7. Charger")
+        print("8. Rechercher par numéro")
+        print("0. Quitter")
 
+        choix = input("Choix : ")
+
+        if choix == "1":
+            num = int(input("Numéro : "))
+            nom = input("Nom : ")
+            suc = input("Succursale : ")
+            duree = int(input("Durée : "))
+            prix = float(input("Prix : "))
+            actif = input("Actif (Oui/Non) : ")
+            casier = input("Casier (Oui/Non) : ")
+            membres.append(MembreStandard(num, nom, suc, duree, prix, actif, casier))
+
+        elif choix == "2":
+            num = int(input("Numéro : "))
+            nom = input("Nom : ")
+            suc = input("Succursale : ")
+            duree = int(input("Durée : "))
+            prix = float(input("Prix : "))
+            actif = input("Actif (Oui/Non) : ")
+            coach = input("Coach personnel (Oui/Non) : ")
+            membres.append(MembrePremium(num, nom, suc, duree, prix, actif, coach))
+
+        elif choix == "3":
+            for m in membres:
+                m.afficher()
+
+        elif choix == "4":
+            afficher_membres_actifs(membres)
+
+        elif choix == "5":
+            afficher_membres_premium(membres)
+
+        elif choix == "6":
+            sauvegarder_membres(membres)
+            print("Sauvegardé.")
+
+        elif choix == "7":
+            membres = charger_membres()
+            print("Chargé.")
+
+        elif choix == "8":
+            index = construire_index(membres)
+            num = int(input("Numéro : "))
+            rechercher_par_numero(index, num)
+
+        elif choix == "0":
+            break
+
+        else:
+            print("Choix invalide.")
+
+
+menu()
   
 
 
